@@ -5,14 +5,16 @@ from django.shortcuts import render
 
 from stripe.checkout import Session
 
+from config.settings import STRIPE_SK, STRIPE_PK
+
 from payment.models import Item
 
-stripe.api_key = 'sk_test_51NxDJqDLwcpdlOQT8uwljcHQdCpR92rSjQvt0GKExTcNKMVspaX1JLQnxsHoJwfDA7so3EZ0SrerYWJXGRJJSMu800E3Iyl7I4'
+stripe.api_key = STRIPE_SK
 
 
 # Create your views here.
 
-def get_session_id(request, pk):
+def session_view(request, pk):
     item = Item.objects.filter(pk=pk).first()
     session = Session.create(
         line_items=[{
@@ -31,6 +33,6 @@ def get_session_id(request, pk):
     return JsonResponse({'id': session.id})
 
 
-def get_item(request, pk):
+def item_view(request, pk):
     item = Item.objects.filter(pk=pk).first()
-    return render(request, 'payment/item_view.html', context={'item': item})
+    return render(request, 'payment/item_view.html', context={'item': item, 'stripe_pk': STRIPE_PK})

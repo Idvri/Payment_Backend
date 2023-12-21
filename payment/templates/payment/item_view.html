@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>{{ item.pk }}</title>
+    <title>{{ item.name }}</title>
 </head>
 <body>
     <form id="buyItemForm">
@@ -19,9 +19,9 @@
         document.getElementById('buyItemForm').addEventListener('submit', function(event) {
             event.preventDefault();
 
-        var stripe = Stripe('pk_test_51NxDJqDLwcpdlOQTwecnEh9k6tA7mGT2U7fJ4SWu01V8FZbpeJzdwYE028ssS7Vn4GlkbNZZlK8US6z33R5AoBDy00vfO3z2ET');
+        var stripe = Stripe('{{ stripe_pk }}');
 
-        fetch('{% url 'payment:buy_item' item.pk %}', {
+        fetch('{% url 'payment:session' item.pk %}', {
             method: 'GET',
         })
         .then(function(response) {

@@ -1,11 +1,11 @@
 from django.urls import path
 
 from payment.apps import PaymentConfig
-from payment.views import get_session_id, get_item
+from payment.views import session_view, item_view
 
 app_name = PaymentConfig.name
 
 urlpatterns = [
-    path('buy/<int:pk>', get_session_id, name='buy_item'),
-    path('item/<int:pk>', get_item, name='get_item'),
+    path('buy/<int:pk>', session_view, name='session'),
+    path('item/<int:pk>', item_view, name='item'),
 ]
