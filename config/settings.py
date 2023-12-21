@@ -28,7 +28,6 @@ SECRET_KEY = 'django-insecure-_0!i$=)+=%k0)onut-ei0ero%da8#s$*afr93t=vi_risap!t!
 DEBUG = True
 
 ALLOWED_HOSTS = ['django']
-CSRF_TRUSTED_ORIGINS = ['http://158.160.126.88']
 
 
 # Application definition
@@ -130,3 +129,4 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 STRIPE_PK = os.environ.get('STRIPE_PK')
 STRIPE_SK = os.environ.get('STRIPE_SK')
+CSRF_TRUSTED_ORIGINS = [os.environ.get('CSRF_TRUSTED_ORIGINS')]

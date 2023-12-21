@@ -1,2 +1,3 @@
 STRIPE_PK=yourpk
 STRIPE_SK=yoursk
+CSRF_TRUSTED_ORIGINS=yourip
