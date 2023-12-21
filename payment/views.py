@@ -12,6 +12,9 @@ stripe.api_key = STRIPE_SK
 
 
 # Create your views here.
+def index(request):
+    return render(request, 'payment/index.html')
+
 
 def buy_view(request, pk):
     item = Item.objects.filter(pk=pk).first()

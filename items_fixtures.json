@@ -1,0 +1,148 @@
+[
+  {
+    "model": "payment.item",
+    "pk": 1,
+    "fields": {
+      "name": "Winter Jacket",
+      "description": "Warm and stylish winter jacket",
+      "price": 7999,
+      "order": 1
+    }
+  },
+  {
+    "model": "payment.item",
+    "pk": 2,
+    "fields": {
+      "name": "Smartphone",
+      "description": "Feature-packed smartphone",
+      "price": 24999,
+      "order": 1
+    }
+  },
+  {
+    "model": "payment.item",
+    "pk": 3,
+    "fields": {
+      "name": "Handcrafted Jewelry",
+      "description": "Exquisite handmade jewelry",
+      "price": 1999,
+      "order": 2
+    }
+  },
+  {
+    "model": "payment.item",
+    "pk": 4,
+    "fields": {
+      "name": "Hiking Backpack",
+      "description": "Durable backpack for adventurers",
+      "price": 3999,
+      "order": 2
+    }
+  },
+  {
+    "model": "payment.item",
+    "pk": 5,
+    "fields": {
+      "name": "Vintage Vinyl Records",
+      "description": "Collection of classic vinyl records",
+      "price": 499,
+      "order": 3
+    }
+  },
+  {
+    "model": "payment.item",
+    "pk": 6,
+    "fields": {
+      "name": "Leather Boots",
+      "description": "Stylish and durable leather boots",
+      "price": 4999,
+      "order": 3
+    }
+  },
+  {
+    "model": "payment.item",
+    "pk": 7,
+    "fields": {
+      "name": "Designer Watch",
+      "description": "Elegant designer wristwatch",
+      "price": 5999
+    }
+  },
+  {
+    "model": "payment.item",
+    "pk": 8,
+    "fields": {
+      "name": "Art Print",
+      "description": "Beautiful artwork print",
+      "price": 799,
+      "order": 4
+    }
+  },
+  {
+    "model": "payment.item",
+    "pk": 9,
+    "fields": {
+      "name": "Camping Tent",
+      "description": "Spacious camping tent for outdoor enthusiasts",
+      "price": 2999
+    }
+  },
+  {
+    "model": "payment.item",
+    "pk": 10,
+    "fields": {
+      "name": "Wireless Headphones",
+      "description": "High-quality wireless headphones",
+      "price": 3999,
+      "order": 5
+    }
+  },
+  {
+    "model": "payment.item",
+    "pk": 11,
+    "fields": {
+      "name": "Coffee Maker",
+      "description": "State-of-the-art coffee maker",
+      "price": 2999
+    }
+  },
+  {
+    "model": "payment.item",
+    "pk": 12,
+    "fields": {
+      "name": "Sunglasses",
+      "description": "Stylish and UV-protective sunglasses",
+      "price": 1299,
+      "order": 5
+    }
+  },
+  {
+    "model": "payment.item",
+    "pk": 13,
+    "fields": {
+      "name": "Fitness Tracker",
+      "description": "Advanced fitness monitoring device",
+      "price": 3499
+    }
+  },
+  {
+    "model": "payment.item",
+    "pk": 14,
+    "fields": {
+      "name": "Cookware Set",
+      "description": "Professional-grade cookware set",
+      "price": 4999,
+      "order": 2
+    }
+  },
+  {
+    "model": "payment.item",
+    "pk": 15,
+    "fields": {
+      "name": "Graphic Novel",
+      "description": "Engaging graphic novel",
+      "price": 799,
+      "order": 1
+    }
+  }
+]
