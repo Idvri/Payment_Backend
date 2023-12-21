@@ -16,7 +16,7 @@ class Item(models.Model):
     name = models.CharField(max_length=50, unique=True, verbose_name='Название')
     description = models.TextField(verbose_name='Описание', null=True, blank=True)
     price = models.IntegerField(
-        validators=[MinValueValidator(50)],
+        validators=[MinValueValidator(1)],
         verbose_name='Цена'
     )
     order = models.ForeignKey(

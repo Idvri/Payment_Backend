@@ -8,7 +8,7 @@ def get_session(name, unit_amount):
                 'price_data': {
                     'currency': 'usd',
                     'product_data': {'name': name},
-                    'unit_amount': unit_amount,
+                    'unit_amount': int(unit_amount * 100),
                 },
                 'quantity': 1
             }
