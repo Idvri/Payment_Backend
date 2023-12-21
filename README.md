@@ -14,12 +14,13 @@ Django + Stripe API бэкенд для осуществления оплаты.
 - вам понадобиться ссылка: https://dashboard.stripe.com/test/apikeys;
 - создайте файл .env и пропишите туда 'Publishable key' (STRIPE_PK) и 'Secret key' (STRIPE_SK) по аналогии с файлом env_example.
 
+### Доступность (адреса):
+- по адресу ВМ (нужно указать его в .env в переменной CSRF_TRUSTED_ORIGINS в формате http://0.0.0.0).
+
 ### Установка и запуск (Docker):
+- git clone --single-branch -b nginx https://github.com/Idvri/Payment_Backend.git;
 - docker-compose up --build - в первый раз;
 - docker-compose up.
-
-### Доступность (адреса):
-- по адресу ВМ (нужно указать его в .env в переменной CSRF_TRUSTED_ORIGINS в формате http://0.0.0.0)
 
 ### Команды (локально):
 ###### Если запуск через Docker, то все команды будут выполнены автоматически.
