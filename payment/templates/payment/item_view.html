@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ item.pk }}</title>
+</head>
+<body>
+    <form id="buyItemForm">
+        <li>{{ item.name }}</li>
+        {% if item.description %}
+        <li>{{ item.description }}</li>
+        {% endif %}
+        <li>{{ item.price }}</li>
+        <li><button type="submit">Buy</button></li>
+    </form>
+    <script src="https://js.stripe.com/v3/"></script>
+    <script>
+
+        document.getElementById('buyItemForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+        var stripe = Stripe('pk_test_51NxDJqDLwcpdlOQTwecnEh9k6tA7mGT2U7fJ4SWu01V8FZbpeJzdwYE028ssS7Vn4GlkbNZZlK8US6z33R5AoBDy00vfO3z2ET');
+
+        fetch('{% url 'payment:buy_item' item.pk %}', {
+            method: 'GET',
+        })
+        .then(function(response) {
+            return response.json();
+        })
+        .then(function(session) {
+            return stripe.redirectToCheckout({ sessionId: session.id });
+        })
+        .then(function(result) {
+            if (result.error) {
+                alert(result.error.message);
+            }
+        });
+    });
+    </script>
+</body>
+</html>

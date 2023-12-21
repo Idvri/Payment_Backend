@@ -1,7 +1,7 @@
 import stripe
-from rest_framework.response import Response
 
-from rest_framework.views import APIView
+from django.http import JsonResponse
+from django.shortcuts import render
 
 from stripe.checkout import Session
 
@@ -11,22 +11,26 @@ stripe.api_key = 'sk_test_51NxDJqDLwcpdlOQT8uwljcHQdCpR92rSjQvt0GKExTcNKMVspaX1J
 
 
 # Create your views here.
-class BuyAPIView(APIView):
 
-    def get(self, request, pk):
-        item = Item.objects.filter(id=pk).first()
-        session = Session.create(
-            line_items=[{
-                'price_data': {
-                    'currency': 'usd',
-                    'product_data': {
-                        'name': item.name,
-                    },
-                    'unit_amount': item.price
+def get_session_id(request, pk):
+    item = Item.objects.filter(pk=pk).first()
+    session = Session.create(
+        line_items=[{
+            'price_data': {
+                'currency': 'usd',
+                'product_data': {
+                    'name': item.name,
                 },
-                'quantity': 1
-            }],
-            mode="payment",
-            success_url='https://example.com/success'
-        )
-        return Response({'session_id': session.id})
+                'unit_amount': item.price
+            },
+            'quantity': 1
+        }],
+        mode="payment",
+        success_url='https://example.com/success'
+    )
+    return JsonResponse({'id': session.id})
+
+
+def get_item(request, pk):
+    item = Item.objects.filter(pk=pk).first()
+    return render(request, 'payment/item_view.html', context={'item': item})
