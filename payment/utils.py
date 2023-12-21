@@ -14,5 +14,5 @@ def get_session(name, unit_amount):
             }
         ],
         mode="payment",
-        success_url='http://localhost:8000/success'
+        success_url='http://django/success'
     )
