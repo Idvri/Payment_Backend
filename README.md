@@ -13,7 +13,7 @@ Django + Stripe API бэкенд для осуществления оплаты.
 - создайте файл .env и пропишите туда 'Publishable key' (STRIPE_PK) и 'Secret key' (STRIPE_SK) по аналогии с файлом env_example.
 
 ### Установка и запуск (локально):
-- git clone https://github.com/Idvri/UpTraderTest.git;
+- git clone https://github.com/Idvri/Payment_Backend.git;
 - python -m venv venv (находясь в папке проекта);
 - venv/Scripts/activate (Windows);
 - source venv/bin/activate (Linux);
