@@ -6,11 +6,13 @@
 </head>
 <body>
     <form id="BuyOrderForm">
-        <li>{{ order.name }}</li>
+        <li>Заказ: {{ order.name }}</li>
+        <hr>
+        <li>Товары:</li>
         <hr>
         {% for item in items %}
-        <li>{{ item.name }}</li>
-        <li>{{ item.price }}</li>
+        <ul><li>Название: {{ item.name }}</li></ul>
+        <ul><li>Цена: {{ item.price }} USD</li></ul>
         <hr>
         {% endfor %}
         <li><button type="submit">Buy</button></li>

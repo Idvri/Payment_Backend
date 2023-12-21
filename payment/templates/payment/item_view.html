@@ -6,12 +6,15 @@
 </head>
 <body>
     <form id="BuyItemForm">
-        <li>{{ item.name }}</li>
+        <hr>
+        <li>Товар: {{ item.name }}</li>
         {% if item.description %}
-        <li>{{ item.description }}</li>
+        <li>Описание: {{ item.description }}</li>
         {% endif %}
-        <li>{{ item.price }}</li>
+        <li>Цена: {{ item.price }} USD</li>
+        <hr>
         <li><button type="submit">Buy</button></li>
+        <hr>
     </form>
     <script src="https://js.stripe.com/v3/"></script>
     <script>

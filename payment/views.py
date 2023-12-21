@@ -29,7 +29,7 @@ def buy_view(request, pk):
             'quantity': 1
         }],
         mode="payment",
-        success_url='https://example.com/success'
+        success_url='http://localhost:8000/success'
     )
     return JsonResponse({'id': session.id})
 
@@ -49,7 +49,7 @@ def buy_order_view(request, pk):
             'quantity': 1
         }],
         mode="payment",
-        success_url='https://example.com/success'
+        success_url='http://localhost:8000/success'
     )
     return JsonResponse({'id': session.id})
 
@@ -69,3 +69,7 @@ def order_view(request, pk):
             'items': order.items.all(),
             'stripe_pk': STRIPE_PK}
     )
+
+
+def success(request):
+    return render(request, 'payment/success_view.html')
