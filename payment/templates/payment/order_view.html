@@ -2,26 +2,28 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>{{ item.name }}</title>
+    <title>{{ order.name }}</title>
 </head>
 <body>
-    <form id="BuyItemForm">
+    <form id="BuyOrderForm">
+        <li>{{ order.name }}</li>
+        <hr>
+        {% for item in items %}
         <li>{{ item.name }}</li>
-        {% if item.description %}
-        <li>{{ item.description }}</li>
-        {% endif %}
         <li>{{ item.price }}</li>
+        <hr>
+        {% endfor %}
         <li><button type="submit">Buy</button></li>
     </form>
     <script src="https://js.stripe.com/v3/"></script>
     <script>
 
-        document.getElementById('BuyItemForm').addEventListener('submit', function(event) {
+        document.getElementById('BuyOrderForm').addEventListener('submit', function(event) {
             event.preventDefault();
 
         var stripe = Stripe('{{ stripe_pk }}');
 
-        fetch('{% url 'payment:buy' item.pk %}', {
+        fetch('{% url 'payment:buy_order' order.pk %}', {
             method: 'GET',
         })
         .then(function(response) {
