@@ -7,7 +7,7 @@ Django + Stripe API бэкенд для осуществления оплаты.
 - Stripe;
 - Docker.
 
-### Environment variables (ВАЖНО!!!):
+### Environment variables:
 - зарегистрируйтесь на сервисе Stripe для получения 'Publishable key' (STRIPE_PK) и 'Secret key' (STRIPE_SK);
 - вам понадобиться ссылка: https://dashboard.stripe.com/test/apikeys;
 - создайте файл .env и пропишите туда 'Publishable key' (STRIPE_PK) и 'Secret key' (STRIPE_SK) по аналогии с файлом env_example.
