@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ item.name }}</title>
+</head>
+<body>
+    <form id="BuyItemForm">
+        <hr>
+        <li>Товар: {{ item.name }}</li>
+        {% if item.description %}
+        <li>Описание: {{ item.description }}</li>
+        {% endif %}
+        <li>Цена: {{ item.price }} USD</li>
+        <hr>
+        <li><button type="submit">Buy</button></li>
+        <hr>
+    </form>
+    <script src="https://js.stripe.com/v3/"></script>
+    <script>
+
+        document.getElementById('BuyItemForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+        var stripe = Stripe('{{ stripe_pk }}');
+
+        fetch('{% url 'payment:buy' item.pk %}', {
+            method: 'GET',
+        })
+        .then(function(response) {
+            return response.json();
+        })
+        .then(function(session) {
+            return stripe.redirectToCheckout({ sessionId: session.id });
+        })
+        .then(function(result) {
+            if (result.error) {
+                alert(result.error.message);
+            }
+        });
+    });
+    </script>
+</body>
+</html>

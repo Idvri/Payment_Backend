@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ order.name }}</title>
+</head>
+<body>
+    <form id="BuyOrderForm">
+        <li>Заказ: {{ order.name }}</li>
+        <hr>
+        <li>Товары:</li>
+        <hr>
+        {% for item in items %}
+        <ul><li>Название: {{ item.name }}</li></ul>
+        <ul><li>Цена: {{ item.price }} USD</li></ul>
+        <hr>
+        {% endfor %}
+        <li><button type="submit">Buy</button></li>
+    </form>
+    <script src="https://js.stripe.com/v3/"></script>
+    <script>
+
+        document.getElementById('BuyOrderForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+        var stripe = Stripe('{{ stripe_pk }}');
+
+        fetch('{% url 'payment:buy_order' order.pk %}', {
+            method: 'GET',
+        })
+        .then(function(response) {
+            return response.json();
+        })
+        .then(function(session) {
+            return stripe.redirectToCheckout({ sessionId: session.id });
+        })
+        .then(function(result) {
+            if (result.error) {
+                alert(result.error.message);
+            }
+        });
+    });
+    </script>
+</body>
+</html>
