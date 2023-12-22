@@ -1,5 +1,7 @@
 from stripe.checkout import Session
 
+from config.settings import CSRF_TRUSTED_ORIGINS
+
 
 def get_session(name, unit_amount):
     return Session.create(
@@ -14,5 +16,5 @@ def get_session(name, unit_amount):
             }
         ],
         mode="payment",
-        success_url='http://django/success'
+        success_url=f'{CSRF_TRUSTED_ORIGINS[0]}/success'
     )
