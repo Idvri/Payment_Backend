@@ -28,6 +28,8 @@ def buy_order_view(request, pk):
     order = Order.objects.filter(pk=pk).first()
     if not order:
         return JsonResponse({'detail': 'nothing here'})
+    elif not order.items.all():
+        return JsonResponse({'detail': 'your order is empty'})
     price_amount = sum([item.price for item in order.items.all()])
     session = get_session(order.name, price_amount)
     return JsonResponse({'id': session.id})
