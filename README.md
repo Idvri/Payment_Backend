@@ -33,7 +33,7 @@ Django + Stripe API бэкенд для осуществления оплаты.
 - https://stripe.com/docs/testing#cards
 
 ### Функционал:
-- localhost:8000/buy/{id} или localhost:8000/buy_order/{id} - создание сессии Stripe для дальнейшего осуществления покупки (GET);
-- localhost:8000/item/{id} - отображение информации о выбранном товаре (GET);
-- localhost:8000/order/{id} - отображение информации о выбранном заказе (GET);
+- http://your.site/buy/{id} или http://your.site/buy_order/{id} - создание сессии Stripe для дальнейшего осуществления покупки (GET);
+- http://your.site/item/{id} - отображение информации о выбранном товаре (GET);
+- http://your.site/order/{id} - отображение информации о выбранном заказе (GET);
 - возможность осуществить покупку одного (Item) или нескольких (Order) товаров по кнопке "Buy" (происходит редирект на Checkout форму).
