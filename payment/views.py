@@ -84,7 +84,7 @@ def buy_intent_view(request, pk):
             return JsonResponse({'message': 'Nothing here'})
         intent = PaymentIntent.create(
             amount=item.price,
-            currency='usd',
+            currency=item.currency,
             payment_method='pm_card_visa',
         )
         return JsonResponse({'detail': intent.id})
