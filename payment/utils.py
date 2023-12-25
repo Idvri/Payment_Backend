@@ -28,11 +28,13 @@ def get_session(items: list, tax_rate: Tax = None, discount: Discount = None):
 def get_tax(tax: Tax = None):
     if tax is None:
         return None
-    return [TaxRate.create(
-        display_name="Налог",
-        inclusive=True,
-        percentage=tax.value,
-    ).id]
+    return [
+        TaxRate.create(
+            display_name="Налог",
+            inclusive=True,
+            percentage=tax.value,
+        ).id
+    ]
 
 
 def get_discount(discount: Discount = None):
