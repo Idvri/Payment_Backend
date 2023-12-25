@@ -5,7 +5,7 @@ from config.settings import CSRF_TRUSTED_ORIGINS
 from payment.models import Tax, Discount
 
 
-def get_session(items: list, tax_rate: Tax = None, discount: Discount = None):
+def get_session(items, tax_rate: Tax = None, discount: Discount = None):
     new_items = list()
     for item in items:
         new_items.append({
