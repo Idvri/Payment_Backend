@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from payment.models import Item, Order
+from payment.models import Item, Order, Discount, Tax
 
 
 # Register your models here.
@@ -12,3 +12,13 @@ class AdminItem(admin.ModelAdmin):
 @admin.register(Order)
 class AdminOrder(admin.ModelAdmin):
     list_display = ('name',)
+
+
+@admin.register(Tax)
+class AdminOrder(admin.ModelAdmin):
+    list_display = ('value',)
+
+
+@admin.register(Discount)
+class AdminOrder(admin.ModelAdmin):
+    list_display = ('value',)

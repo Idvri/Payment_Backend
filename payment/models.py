@@ -3,9 +3,37 @@ from django.core.validators import MinValueValidator
 
 
 # Create your models here.
+class ValueFor(models.Model):
+    value = models.IntegerField(unique=True, verbose_name='значение')
+
+
+class Tax(ValueFor):
+
+    def __str__(self):
+        return f'Налог: {self.value}'
+
+    class Meta:
+        verbose_name = 'Налог'
+        verbose_name_plural = 'Налоги'
+
+
+class Discount(ValueFor):
+
+    def __str__(self):
+        return f'Скидка: {self.value}'
+
+    class Meta:
+        verbose_name = 'Скидка'
+        verbose_name_plural = 'Скидки'
+
 
 class Order(models.Model):
     name = models.CharField(max_length=50, unique=True, verbose_name='Название')
+    tax = models.ForeignKey(Tax, on_delete=models.SET_NULL, verbose_name='Налог', null=True, blank=True)
+    discount = models.ForeignKey(Discount, on_delete=models.SET_NULL, verbose_name='Скидка', null=True, blank=True)
+
+    def __str__(self):
+        return self.name
 
     class Meta:
         verbose_name = 'Заказ'
@@ -27,6 +55,9 @@ class Item(models.Model):
         null=True,
         blank=True
     )
+
+    def __str__(self):
+        return self.name
 
     class Meta:
         verbose_name = 'Товар'
