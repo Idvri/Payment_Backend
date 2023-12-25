@@ -2,22 +2,23 @@ from stripe import TaxRate, Coupon
 from stripe.checkout import Session
 
 from config.settings import CSRF_TRUSTED_ORIGINS
-from payment.models import Tax, Discount
+from payment.models import Tax, Discount, Item
 
 
-def get_session(name, unit_amount, tax_rate: Tax = None, discount: Discount = None):
+def get_session(items: list, tax_rate: Tax = None, discount: Discount = None):
+    new_items = list()
+    for item in items:
+        new_items.append({
+            'price_data': {
+                'currency': item.currency,
+                'product_data': {'name': item.name},
+                'unit_amount': int(item.price * 100),
+            },
+            'quantity': 1,
+            'tax_rates': get_tax(tax_rate),
+        })
     return Session.create(
-        line_items=[
-            {
-                'price_data': {
-                    'currency': 'usd',
-                    'product_data': {'name': name},
-                    'unit_amount': int(unit_amount * 100),
-                },
-                'quantity': 1,
-                'tax_rates': get_tax(tax_rate),
-            }
-        ],
+        line_items=new_items,
         discounts=[{'coupon': get_discount(discount)}],
         mode="payment",
         success_url=f'{CSRF_TRUSTED_ORIGINS[0]}/success'
@@ -41,3 +42,11 @@ def get_discount(discount: Discount = None):
         percent_off=discount.value,
         duration="once",
     )
+
+
+def validate_items(items):
+    currencies = {item.currency for item in items}
+    if len(currencies) > 1:
+        return True
+    else:
+        return False

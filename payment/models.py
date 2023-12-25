@@ -41,12 +41,19 @@ class Order(models.Model):
 
 
 class Item(models.Model):
+    CUR_CHOICES = {
+        'rub': 'RUB',
+        'usd': 'USD',
+        'eur': 'EUR',
+    }
+
     name = models.CharField(max_length=50, unique=True, verbose_name='Название')
     description = models.TextField(verbose_name='Описание', null=True, blank=True)
     price = models.IntegerField(
         validators=[MinValueValidator(1)],
         verbose_name='Цена'
     )
+    currency = models.CharField(max_length=3, choices=CUR_CHOICES, default='usd', verbose_name='Валюта')
     order = models.ForeignKey(
         Order,
         on_delete=models.SET_NULL,

@@ -2,11 +2,12 @@ import stripe
 
 from django.http import JsonResponse
 from django.shortcuts import render
+from stripe import InvalidRequestError
 
 from config.settings import STRIPE_SK, STRIPE_PK
 
 from payment.models import Item, Order
-from payment.utils import get_session
+from payment.utils import get_session, validate_items
 
 stripe.api_key = STRIPE_SK
 
@@ -17,10 +18,10 @@ def index(request):
 
 
 def buy_view(request, pk):
-    item = Item.objects.filter(pk=pk).first()
+    item = Item.objects.filter(pk=pk).all()
     if not item:
         return JsonResponse({'detail': 'nothing here'})
-    session = get_session(item.name, item.price)
+    session = get_session(item)
     return JsonResponse({'id': session.id})
 
 
@@ -30,9 +31,12 @@ def buy_order_view(request, pk):
         return JsonResponse({'detail': 'nothing here'})
     elif not order.items.all():
         return JsonResponse({'detail': 'your order is empty'})
-    price_amount = sum([item.price for item in order.items.all()])
-    session = get_session(order.name, price_amount, order.tax, order.discount)
-    return JsonResponse({'id': session.id})
+    try:
+        session = get_session(order.items.all(), order.tax, order.discount)
+    except InvalidRequestError as e:
+        return JsonResponse({'detail': e.user_message})
+    else:
+        return JsonResponse({'id': session.id})
 
 
 def item_view(request, pk):
@@ -52,7 +56,8 @@ def order_view(request, pk):
         context={
             'order': order,
             'items': order.items.all(),
-            'stripe_pk': STRIPE_PK
+            'stripe_pk': STRIPE_PK,
+            'error': validate_items(order.items.all())
         }
     )
 

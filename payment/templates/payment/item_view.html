@@ -11,7 +11,7 @@
         {% if item.description %}
         <li>Описание: {{ item.description }}</li>
         {% endif %}
-        <li>Цена: {{ item.price }} USD</li>
+        <li>Цена: {{ item.price }} {{ item.currency.upper }}</li>
         <hr>
         <li><button type="submit">Buy</button></li>
         <hr>

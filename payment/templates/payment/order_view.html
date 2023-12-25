@@ -13,10 +13,14 @@
         {% if items %}
         {% for item in items %}
         <ul><li>Название: {{ item.name }}</li></ul>
-        <ul><li>Цена: {{ item.price }} USD</li></ul>
+        <ul><li>Цена: {{ item.price }} {{ item.currency.upper }}</li></ul>
         <hr>
         {% endfor %}
+        {% if not error %}
         <li><button type="submit">Buy</button></li>
+        {% elif error %}
+        <li>Мультивалютные операции не поддерживаются! Пожалуйста, проверьте ваш заказ.</li>
+        {% endif %}
         {% else %}
         <ul><li>Заказ пуст</li></ul>
         <hr>
