@@ -25,7 +25,7 @@ def index(request):
 
 def buy_view(request, pk):
     if request.method == 'GET':
-        item = Item.objects.filter(pk=pk).first()
+        item = Item.objects.filter(pk=pk).all()
         if not item:
             return JsonResponse({'detail': 'Nothing here'})
         session = get_session(item)
