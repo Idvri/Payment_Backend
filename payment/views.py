@@ -31,7 +31,7 @@ def buy_order_view(request, pk):
     elif not order.items.all():
         return JsonResponse({'detail': 'your order is empty'})
     price_amount = sum([item.price for item in order.items.all()])
-    session = get_session(order.name, price_amount)
+    session = get_session(order.name, price_amount, order.tax, order.discount)
     return JsonResponse({'id': session.id})
 
 

@@ -4,13 +4,13 @@ from django.core.validators import MinValueValidator
 
 # Create your models here.
 class ValueFor(models.Model):
-    value = models.IntegerField(unique=True, verbose_name='значение')
+    value = models.IntegerField(unique=True, verbose_name='значение (процент)')
 
 
 class Tax(ValueFor):
 
     def __str__(self):
-        return f'Налог: {self.value}'
+        return f'{self.value}%'
 
     class Meta:
         verbose_name = 'Налог'
@@ -20,7 +20,7 @@ class Tax(ValueFor):
 class Discount(ValueFor):
 
     def __str__(self):
-        return f'Скидка: {self.value}'
+        return f'{self.value}%'
 
     class Meta:
         verbose_name = 'Скидка'
