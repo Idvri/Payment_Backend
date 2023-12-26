@@ -19,6 +19,7 @@ Django + Stripe API бэкенд для осуществления оплаты.
 
 ### Установка и запуск (Docker):
 - git clone --single-branch -b nginx https://github.com/Idvri/Payment_Backend.git;
+###### После этой команды нужно будет произвести работу с .env файлом как было описано ранее.
 - docker-compose up --build - в первый раз;
 - docker-compose up.
 
@@ -33,7 +34,10 @@ Django + Stripe API бэкенд для осуществления оплаты.
 - https://stripe.com/docs/testing#cards
 
 ### Функционал:
+- http://your.site/admin - создание товаров (Item), заказов (Order), налогов (Tax) и скидок (Discount) в админ панели;
 - http://your.site/buy/{id} или http://your.site/buy_order/{id} - создание сессии Stripe для дальнейшего осуществления покупки (GET);
 - http://your.site/item/{id} - отображение информации о выбранном товаре (GET);
 - http://your.site/order/{id} - отображение информации о выбранном заказе (GET);
-- возможность осуществить покупку одного (Item) или нескольких (Order) товаров по кнопке "Buy" (происходит редирект на Checkout форму).
+- возможность осуществить покупку одного (Item) или нескольких (Order) товаров по кнопке "Buy" (происходит редирект на Checkout форму);
+- http://your.site/buy_intent/{id} - создание Payment Intent (представляет собой намерение провести платеж между клиентом и продавцом (GET));
+- http://your.site/confirm_intent - подтверждение Payment Intent (POST, тело (body) - {"payment": "payment_intent_id"}).
